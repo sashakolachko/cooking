@@ -1,8 +1,8 @@
 <template lang="html">
-  <v-form ref="form">
-    <v-app-bar  app height="84" class="align-center">
-      <v-layout  row justify-space-around align-center>
-        <v-flex xs0 >
+  <v-form ref="form" fluid>
+    <div  class="pa-3 header-container"  >
+      <v-layout  row wrap justify-space-around align-center>
+        <v-flex class="ml-4" hidden-xs-only >
           <v-img
             src="../assets/logo.png"
             max-height="80"
@@ -10,7 +10,7 @@
           >
           </v-img>
         </v-flex>
-        <v-flex xs10 sm4 md4 lg5>
+        <v-flex xs10 sm6 md4 lg5>
           <v-text-field
             :rules="inputRules"
             v-model="searchWord"
@@ -19,18 +19,18 @@
           >
           </v-text-field>
         </v-flex>
-        <v-flex xs1 sm2 md2 lg2 text-center >
+        <v-flex xs3 sm2 md2 lg2 text-center >
           <v-btn fab small icon outlined :color="buttonColor" @click="search()">
             <v-icon>search</v-icon>
           </v-btn>
         </v-flex>
-        <v-flex xs3 sm2 md2 lg2 text-center >
+        <v-flex xs10 sm2 md2 lg2 text-center class="order-first order-sm-last" >
           <v-btn   text class="pa-2" height="60" color="primary" @click="advancedSearch()">
               <span>Advanced <br> Search</span>
           </v-btn>
         </v-flex>
       </v-layout>
-    </v-app-bar>
+    </div>
   </v-form>
 </template>
 
@@ -84,4 +84,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .header-container{
+    background-color: white;
+  }
 </style>
