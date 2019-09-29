@@ -1,23 +1,29 @@
 <template lang="html">
  <v-container fluid fill-height class="container">
-  <div class="recipe">
-    <div class="note">
-      <p class="note-text">Recipe of the day</p>
+  <transition
+    appear
+    appear-class = "custom-appear-class"
+    appear-active-class = "animated zoomInRight">
+
+    <div class="recipe">
+      <div class="note">
+        <p class="note-text">Recipe of the day</p>
+      </div>
+      <p class="title">{{ label }}</p>
+      <p> Calories: {{ calories }}</p>
+      <div class="item">
+        <v-chip
+        class="ma-1"
+        color="success"
+        outlined
+        v-for="item of healthLabels"
+      >
+        {{item}}
+      </v-chip>
+      </div>
+      </v-img>
     </div>
-    <p class="title">{{ label }}</p>
-    <p> Calories: {{ calories }}</p>
-    <div class="item">
-      <v-chip
-      class="ma-1"
-      color="success"
-      outlined
-      v-for="item of healthLabels"
-    >
-      {{item}}
-    </v-chip>
-    </div>
-    </v-img>
-  </div>
+  </transition>
  </v-container>
 </template>
 
@@ -45,6 +51,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+
   .container{
     height: 90vh;
     background-image: linear-gradient(to right bottom,

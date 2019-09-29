@@ -23,8 +23,10 @@ export default new Vuex.Store({
     mealValue: '',
     calories: '',
     range: [0, 1000],
+
   },
   mutations: {
+
     setSearchWord(state, word) {
       state.searchWord = word;
     },

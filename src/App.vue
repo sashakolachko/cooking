@@ -2,7 +2,9 @@
 <v-app>
   <Header />
   <v-content>
-    <router-view></router-view>
+    <transition name="slide">
+      <router-view></router-view>
+    </transition>
   </v-content>
   <Footer />
 </v-app>
@@ -23,3 +25,25 @@ export default {
   }),
 };
 </script>
+<style >
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity .4s, transform .4s;
+}
+
+.slide-enter-active {
+  transition-delay: .4s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateZ(-100px);
+}
+
+.slide-enter-to,
+.slide-leave {
+  opacity: 1;
+  transform: translateZ(0px);
+}
+</style>

@@ -1,11 +1,11 @@
 <template lang="html">
   <v-card flat class="text-xs-center ma-2">
-    <v-img :src="imagePath"></v-img>
+    <v-img  @click="goToRecipe()" :src="imagePath" class="pointer-item"></v-img>
     <v-flex d-flex justify-space-between>
-      <v-card-title class="title">
+      <v-card-title class=" pl-3 card-title pointer-item" @click="goToRecipe()">
         {{ title }}
       </v-card-title>
-      <v-icon @click="goToRecipe()" class="mr-1 icon-item" color="primary" large>mdi-chevron-right</v-icon>
+      <v-icon @click="goToRecipe()" class="mr-1 pointer-item" color="primary" large>mdi-chevron-right</v-icon>
     </v-flex>
   </v-card>
 </template>
@@ -35,7 +35,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.icon-item:hover{
-  cursor: pointer;
-}
+  .pointer-item:hover{
+    cursor: pointer;
+  }
+  .card-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 25px;
+    font-weight: 300;
+  }
 </style>
