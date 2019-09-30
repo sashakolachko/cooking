@@ -21,7 +21,7 @@
             </v-avatar>
             Servings
           </v-chip>
-          <v-btn rounded color="yellow darken-1"  @click="countCalories() ">
+          <v-btn :loading="loadingBtn" rounded color="yellow darken-1"  @click="countCalories() ">
               <span>Count Calories</span>
           </v-btn>
           <v-dialog v-model="dialog" width="600">
@@ -88,12 +88,14 @@ export default {
     caloriesServing: 0,
     caloriesPercent: 0,
     dialog: false,
+    loadingBtn: false
   }),
   methods: {
     countCalories() {
       if (this.calories) {
         this.dialog = true;
       } else {
+        this.loadingBtn = true;
         axios.post(`https://api.edamam.com/api/nutrition-details?app_id=${this.$store.state.apiId}&app_key=${this.$store.state.apiKey}`, {
             "yield": this.servings,
             "ingr": this.ingredients
@@ -103,6 +105,7 @@ export default {
             this.caloriesServing = parseInt(this.calories / this.servings);
             this.caloriesPercent = parseInt(this.caloriesServing * 100 / 1900);
             this.dialog = true;
+            this.loadingBtn = false;
           });
       }
     }
