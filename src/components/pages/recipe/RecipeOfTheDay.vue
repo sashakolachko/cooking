@@ -1,11 +1,11 @@
 <template lang="html">
- <v-container fluid fill-height class="container">
+ <v-container  fill-height fluid>
+   <div class="container-box">
   <transition
     appear
     appear-class = "custom-appear-class"
     appear-active-class = "animated zoomInRight">
-
-    <div class="recipe">
+    <div class="recipe ">
       <div class="note">
         <p class="note-text">Recipe of the day</p>
       </div>
@@ -24,6 +24,7 @@
       </v-img>
     </div>
   </transition>
+  </div>
  </v-container>
 </template>
 
@@ -52,30 +53,35 @@ export default {
 
 <style lang="css" scoped>
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
-
   .container{
-    height: 90vh;
     background-image: linear-gradient(to right bottom,
         rgba(126, 213, 111, 0.8),
         rgba(40, 180, 133, 0.8)),
       url('../../../assets/back.jpg');
     background-size: cover;
     background-position: top;
-    position:relative;
+  }
+  .container-box{
+    display:flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 80px;
   }
   .recipe{
-    width:300px;
-    height:350px;
+    width:350px;
+    height:fit-content;
+    padding-bottom: 40px;
     border-radius: 3px;
     background-color: rgba(255, 255, 255, 0.9);
-    position: absolute;
-    top:20%;
-    right:20%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    position: relative;
+    justify-self: flex-end;
+    align-self: flex-end;
   }
+
   .note{
     display:flex;
     justify-content: center;
@@ -95,11 +101,38 @@ export default {
     color:white;
   }
   .title{
-    margin-left:20px;
+    text-align: center;
+    margin: auto;
     margin-top:55px;
   }
   .item{
     text-align: center;
     width:95%;
+  }
+  @media (max-width: 600px){
+     .recipe{
+       top:10%;
+       left:0;
+       bottom:0;
+       right:0;
+       margin:auto;
+       width:80%;
+       height: fit-content;
+       padding-bottom: 10px;
+       box-sizing: border-box;
+       border-radius: 5px;
+    }
+    .container-box{
+      padding:50px 0;
+    }
+    .note{
+      width:90px;
+      height:90px;
+      left:-25px;
+      top:-45px;
+    }
+    .note-text{
+      font-size: 15px;
+    }
   }
 </style>

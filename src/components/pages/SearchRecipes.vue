@@ -1,31 +1,40 @@
 <template lang="html">
-  <v-container grid-list-xs,sm,md,lg,xl>
+  <v-container grid-list-xs,sm,md,lg,xl fluid >
     <div v-if="morePage">
       <Pagination/>
     </div>
-      <v-layout row  justify-space-around align-baseline>
-        <transition-group
-        enter-active-class=" animated bounceInRight"
-        leave-active-class=" animated fadeOut" :duration="{ enter: 1500, leave: 800 }"
-          tag="div" class="box">
-          <v-flex  style="transition-delay: 1s"  xs10  sm6 md4 lg3 v-for="(recipe, index) in recipes" v-bind:key="recipe" height="100%" >
-            <RecipeCard
-              :uri="recipe.recipe.uri"
-              :imagePath="recipe.recipe.image"
-              :title="recipe.recipe.label"
-              :serving="recipe.recipe.yield"
-            />
-          </v-flex>
-        </transition-group>
-      </v-layout>
-
+    <transition enter-active-class=" animated fadeIn"
+    leave-active-class=" animated fadeOut">
+    <div class="d-flex mt-5 secondary--text justify-center">
+      <h3  v-if="recipes.length == 0">Sorry! Nothing found.</h3>
+    </div>
+    </transition>
+    <transition-group
+      enter-active-class=" animated bounceInRight"
+      leave-active-class=" animated fadeOut"
+      :duration="{ enter: 1500, leave: 800 }"
+      tag="layout"
+      class="box">
+        <v-flex
+          style="transition-delay: 1s"
+          xs11 sm6 md4 lg3
+          v-for="(recipe, index) in recipes"
+          v-bind:key="recipe"
+          >
+          <RecipeCard
+            :uri="recipe.recipe.uri"
+            :imagePath="recipe.recipe.image"
+            :title="recipe.recipe.label"
+            :serving="recipe.recipe.yield"
+          />
+        </v-flex>
+    </transition-group>
   </v-container>
 </template>
 
 <script>
 import RecipeCard from './recipe/RecipeCard.vue';
 import Pagination from './Pagination.vue';
-require('vue2-animate/dist/vue2-animate.min.css');
 export default {
   name: 'SearchRecipes',
   components: {
@@ -41,17 +50,6 @@ export default {
       return this.$store.state.morePages;
     },
   },
-  methods: {
-    add() {
-      this.items.splice(0);
-      this.items.push('dv');
-      // this.items = ['234243', 'd4565465464fvd,', '345654543r', 'dfv45646fdv'];
-    }
-  },
-  mounted() {
-
-  }
-
 }
 </script>
 
@@ -61,5 +59,6 @@ export default {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content:center;
 }
 </style>

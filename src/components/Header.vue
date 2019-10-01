@@ -2,7 +2,7 @@
   <v-form ref="form" fluid v-on:submit.prevent="search">
     <div  class="pa-3 header-container"  >
       <v-layout  row wrap justify-space-around align-center>
-        <v-flex class="ml-4" hidden-xs-only >
+        <v-flex class="ml-4 order-first">
           <a href="/"><v-img
             src="../assets/logo.png"
             max-height="80"
@@ -22,7 +22,7 @@
           </v-text-field>
         </v-flex>
         <v-flex xs3 sm2 md2 lg2 text-center >
-          <v-btn type="button" fab small icon outlined :color="buttonColor" @click="search()">
+          <v-btn type="button"  fab small icon outlined :color="buttonColor" @click="search()">
             <v-icon>search</v-icon>
           </v-btn>
         </v-flex>
